@@ -6,12 +6,15 @@
 <!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
 <!-- * * * * * * * to get started with your project! * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<app-nav></app-nav>
 
-<div class="container">
-  <span>{{ title }} app is running!</span>
-
+<main role="main">
+  <div class="container">
+    <span>{{ title }} app is running!</span>
   <!-- App-Eventos -->
-  <app-eventos></app-eventos>
-</div>
+    <app-eventos></app-eventos>
+  </div>
+ 
+</main>
 
 <router-outlet></router-outlet>

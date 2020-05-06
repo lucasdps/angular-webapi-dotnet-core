@@ -8,16 +8,42 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EventosComponent implements OnInit {
 
+  _filtroLista: string;
+  
+  get filtroLista(): string{
+    return this._filtroLista;
+  }
 
-  eventos: any = [
-    {EventoId: 1, Tema: 'Angular', Local: 'Belo Horizonte' },
-    {EventoId: 2, Tema: '.Net core', Local: 'arraial' },
-    {EventoId: 3, Tema: 'c# standard', Local: 'macaé' }
-  ];
+  set filtroLista(value: string){
+    this._filtroLista = value;
+    this.eventosFiltrados = this.filtroLista ? this.filtrarEvento(this.filtroLista) : this.eventos; 
+  }
+
+  eventosFiltrados: any = [];
+  eventos: any = [];
+  imagemLargura: number;
+  imagemMagem: number;
+  mostrarImagem: boolean;
+
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
     this.getEventos();
+    this.imagemLargura = 50;
+    this.imagemMagem = 2;
+    this.mostrarImagem = true;
+    this.filtroLista = '';
+  }
+
+  filtrarEvento(filtrarPor: string): any{
+    filtrarPor = filtrarPor.toLocaleLowerCase();
+    return this.eventos.filter(
+      evento => evento.tema.toLocaleLowerCase().indexOf(filtrarPor) !== -1
+    )
+  }
+
+  alternarImagem(){
+    this.mostrarImagem = !this.mostrarImagem;
   }
 
   getEventos(){
