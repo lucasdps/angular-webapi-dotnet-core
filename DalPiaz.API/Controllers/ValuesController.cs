@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DalPiaz.API.Data;
-using DalPiaz.API.Model;
+using DalPiaz.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,9 +11,9 @@ namespace DalPiaz.API.Controllers {
     [Route ("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase {
-        public DataContext _context { get; }
+        public DalPiazContexto _context { get; }
 
-        public ValuesController (DataContext context) {
+        public ValuesController (DalPiazContexto context) {
             this._context = context;
 
         }
@@ -40,7 +39,7 @@ namespace DalPiaz.API.Controllers {
             
             try
             {
-                 return Ok(await _context.Eventos.FirstOrDefaultAsync(x=>x.EventoId==id));
+                 return Ok(await _context.Eventos.FirstOrDefaultAsync(x=>x.Id==id));
             }
             catch (System.Exception ex)
             {

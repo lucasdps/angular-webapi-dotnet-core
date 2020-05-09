@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0" />
 
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DalPiaz.Domain\DalPiaz.Domain.csproj" />
+    <ProjectReference Include="..\DalPiaz.Repository\DalPiaz.Repository.csproj" />
+  </ItemGroup>
 </Project>
